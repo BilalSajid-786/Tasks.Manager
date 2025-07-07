@@ -10,7 +10,7 @@ namespace Tasks.Manager.ServiceContracts.Projects
     public interface IProjectsService
     {
         Task<ProjectViewModel> AddProjectAsync(AddProjectViewModel project);
-        Task<List<ProjectViewModel>> GetAllProjectsAsync();
+        Task<IEnumerable<ProjectViewModel>> GetAllProjectsAsync();
         Task<ProjectViewModel> GetProjectByIdAsync(Guid id);
         Task<bool> IsProjectNameExistAsync(string projectName);
         Task<ProjectViewModel> UpdateProjectAsync(UpdateProjectViewModel project);
