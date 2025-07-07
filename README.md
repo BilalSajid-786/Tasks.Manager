@@ -1,27 +1,29 @@
 # 🗂️ Tasks Manager
 
-A task management system that enables streamlined administration of teams, projects, and tasks assigned to employees. Built on ASP.NET Core MVC using a clean, maintainable multi-layered architecture.
+**Tasks Manager** is a role-based task management system that enables streamlined administration of teams, projects, and tasks assigned to employees. Built using ASP.NET Core MVC and Entity Framework Core, the system follows a clean N-Layered architecture promoting separation of concerns and maintainability.
 
 ---
 
 ## 📌 Key Features
 
-- Role-based access: Admin, Manager, and Employee
-- Manage teams, projects, and employee tasks
-- Layered architecture with strong separation of concerns
-- Scalable and maintainable codebase
-- Uses Entity Framework Core with SQL Server
+- 🔐 **User authentication and role management** with ASP.NET Core Identity
+- 🎯 **Role-based access control** (Admin, Manager, Employee)
+- 👥 Manage **teams**, **projects**, and **employee-assigned tasks**
+- ✅ Clean multi-layered architecture (SOLID principles)
+- 📦 Scalable codebase with strong separation between UI, logic, and data
+- 🗄️ SQL Server integration via Entity Framework Core
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Component        | Technology                     |
-|------------------|--------------------------------|
-| Backend Framework | ASP.NET Core MVC              |
-| ORM              | Entity Framework Core          |
-| Database         | SQL Server                     |
-| Architecture     | N-Layered (SOLID principles)   |
+| Component            | Technology              |
+|----------------------|--------------------------|
+| Backend Framework    | ASP.NET Core MVC         |
+| User Management      | ASP.NET Core Identity    |
+| ORM                  | Entity Framework Core    |
+| Database             | SQL Server               |
+| Architecture Pattern | N-Layered Architecture   |
 
 ---
 
