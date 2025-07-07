@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tasks.Manager.RepositoryContracts\Tasks.Manager.RepositoryContracts.csproj" />
+    <ProjectReference Include="..\Tasks.Manager.ServiceContracts\Tasks.Manager.ServiceContracts.csproj" />
+  </ItemGroup>
+
+</Project>

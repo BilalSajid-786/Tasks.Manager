@@ -1,0 +1,28 @@
+﻿@model UpdateTeamViewModel;
+@{
+    ViewBag.Title = "Edit Team";
+}
+
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container p-4 border rounded shadow" style="max-width: 700px; width: 100%;">
+        <h2 class="text-center mb-4">Edit Team</h2>
+        <form method="post" asp-action="Edit" asp-controller="Teams" asp-area="Teams">
+            <div class="form-group">
+                <input class="form-control" asp-for="TeamId" hidden>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name">Team Name</label>
+                <input class="form-control" placeholder="Enter team name" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Update Team</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

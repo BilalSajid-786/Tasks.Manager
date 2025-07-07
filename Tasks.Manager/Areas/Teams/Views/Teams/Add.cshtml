@@ -1,0 +1,24 @@
+﻿@model AddTeamViewModel;
+@{
+    ViewBag.Title = "Add Team";
+}
+
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container p-4 border rounded shadow" style="max-width: 700px; width: 100%;">
+        <h2 class="text-center mb-4">Add Team</h2>
+        <form method="post" asp-action="Add" asp-controller="Teams" asp-area="Teams">
+            <div class="form-group">
+                <label asp-for="Name">Team Name</label>
+                <input class="form-control" placeholder="Enter team name" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success mt-4">Add Team</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
