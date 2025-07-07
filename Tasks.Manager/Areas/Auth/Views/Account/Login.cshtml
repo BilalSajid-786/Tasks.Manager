@@ -1,0 +1,23 @@
+﻿@model LoginViewModel;
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container p-4 border rounded shadow" style="max-width: 700px; width: 100%;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form method="post" asp-action="Login" asp-controller="Account">
+            <div class="form-group">
+                <label asp-for="Email">Email address</label>
+                <input class="form-control" placeholder="Enter email" asp-for="Email">
+            </div>
+            <div class="form-group mt-2">
+                <label asp-for="Password">Password</label>
+                <input class="form-control" placeholder="Enter password" asp-for="Password">
+            </div>
+            <button type="submit" class="btn btn-primary mt-4">Login</button>
+        </form>
+    </div>
+</div>
+
+
