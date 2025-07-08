@@ -20,7 +20,7 @@ namespace Tasks.Manager.Services.Projects.Mappers
                 Name = project.Name,
                 Description = project.Description,
                 CreatedAt = project.CreatedAt,
-                Team = project.Team.Name
+                Team = project?.Team?.Name
             };
         }
 
@@ -44,7 +44,8 @@ namespace Tasks.Manager.Services.Projects.Mappers
                 {
                     Name = addProjectViewModel.Name,
                     Description = addProjectViewModel.Description,
-                    CreatedAt = addProjectViewModel.CreatedAt
+                    CreatedAt = addProjectViewModel.CreatedAt,
+                    TeamId = addProjectViewModel.TeamId
                 };
             }
             if (project is UpdateProjectViewModel updateProjectViewModel)

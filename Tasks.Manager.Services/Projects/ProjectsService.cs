@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,10 @@ namespace Tasks.Manager.Services.Projects
         {
             _projectsRepository = projectsRepository;
         }
-        public async Task<ProjectViewModel> AddProjectAsync(AddProjectViewModel project)
+        public async Task<ProjectViewModel> AddProjectAsync(AddProjectViewModel project, Guid createdBy)
         {
             var projectEntityToAdd = ProjectsMapper.ToProject(project);
+            projectEntityToAdd.CreatedBy = createdBy;
             var projectResponse = await _projectsRepository.AddProjectAsync(projectEntityToAdd);
             return ProjectsMapper.ToProjectViewModel(projectResponse);
         }

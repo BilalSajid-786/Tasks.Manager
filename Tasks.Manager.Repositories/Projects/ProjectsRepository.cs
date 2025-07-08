@@ -33,7 +33,7 @@ namespace Tasks.Manager.Repositories.Projects
 
         public async Task<List<Project>> GetAllProjectsAsync()
         {
-            return await _context.Projects.ToListAsync();
+            return await _context.Projects.Include(p => p.Team).ToListAsync();
         }
 
         public async Task<Project> GetProjectByIdAsync(Guid id)
