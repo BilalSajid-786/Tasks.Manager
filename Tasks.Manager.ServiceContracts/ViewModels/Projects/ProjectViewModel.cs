@@ -14,5 +14,6 @@ namespace Tasks.Manager.ServiceContracts.ViewModels.Projects
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Team { get; set; } = string.Empty;
+        public Guid TeamId { get; set; }
     }
 }

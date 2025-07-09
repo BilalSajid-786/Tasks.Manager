@@ -12,5 +12,7 @@ namespace Tasks.Manager.ServiceContracts.ViewModels.Projects
         public Guid ProjectId { get; set; }
         public string Name { get; set; } = string.Empty;
         public string? Description { get; set; }
+        public Guid TeamId { get; set; }
+        public Guid? CreatedBy { get; set; }
     }
 }

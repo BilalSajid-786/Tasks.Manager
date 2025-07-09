@@ -38,7 +38,7 @@ namespace Tasks.Manager.Repositories.Projects
 
         public async Task<Project> GetProjectByIdAsync(Guid id)
         {
-            return await _context.Projects.FindAsync(id);
+            return await _context.Projects.AsNoTracking().FirstOrDefaultAsync(p => p.ProjectId == id);
         }
 
         public async Task<bool> IsProjectNameExistAsync(string projectName)

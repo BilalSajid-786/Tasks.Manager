@@ -20,7 +20,8 @@ namespace Tasks.Manager.Services.Projects.Mappers
                 Name = project.Name,
                 Description = project.Description,
                 CreatedAt = project.CreatedAt,
-                Team = project?.Team?.Name
+                Team = project?.Team?.Name,
+                TeamId = project.TeamId
             };
         }
 
@@ -54,7 +55,9 @@ namespace Tasks.Manager.Services.Projects.Mappers
                 {
                     ProjectId = updateProjectViewModel.ProjectId,
                     Name = updateProjectViewModel.Name,
-                    Description = updateProjectViewModel.Description
+                    Description = updateProjectViewModel.Description,
+                    CreatedBy = updateProjectViewModel.CreatedBy.Value,
+                    TeamId = updateProjectViewModel.TeamId
                 };
             }
             return new Project();

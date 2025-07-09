@@ -55,7 +55,7 @@ namespace Tasks.Manager.Services.Projects
             var projectById = await _projectsRepository.GetProjectByIdAsync(project.ProjectId);
             if(projectById != null)
             {
-                var projectUpdated = await _projectsRepository.UpdateProjectAsync(projectById);
+                var projectUpdated = await _projectsRepository.UpdateProjectAsync(ProjectsMapper.ToProject(project));
                 return ProjectsMapper.ToProjectViewModel(projectUpdated);
             }
             return new ProjectViewModel();
