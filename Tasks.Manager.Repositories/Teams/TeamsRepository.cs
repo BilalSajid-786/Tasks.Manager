@@ -50,7 +50,6 @@ namespace Tasks.Manager.Repositories.Teams
         public async Task<Team> UpdateTeamAsync(Team team)
         {
             var entity = await _context.Teams.AsNoTracking().FirstAsync(t => t.TeamId == team.TeamId);
-            team.CreatedBy = entity.CreatedBy;
             if(entity != null)
             {
                 _context.Teams.Update(team);

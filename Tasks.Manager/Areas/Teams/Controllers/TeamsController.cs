@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Tasks.Manager.Controllers;
 using Tasks.Manager.ServiceContracts.Teams;
 using Tasks.Manager.ServiceContracts.ViewModels.Teams;
 
@@ -8,7 +9,7 @@ namespace Tasks.Manager.Areas.Teams.Controllers
 {
     [Area("Teams")]
     [Route("[area]/[controller]/[action]")]
-    public class TeamsController : Controller
+    public class TeamsController : BaseController
     {
         private readonly ITeamsService _teamsService;
         public TeamsController(ITeamsService teamsService)
@@ -37,8 +38,7 @@ namespace Tasks.Manager.Areas.Teams.Controllers
             {
                 return View(addTeamViewModel);
             }
-            var userId = HttpContext.User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier)?.Value;
-            await _teamsService.AddTeamAsync(addTeamViewModel,Guid.Parse(userId));
+            await _teamsService.AddTeamAsync(addTeamViewModel,LoggedInUserId);
             return RedirectToAction("Index","Teams", new {area = "Teams"});
         }
 

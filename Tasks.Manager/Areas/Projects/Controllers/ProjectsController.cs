@@ -84,7 +84,6 @@ namespace Tasks.Manager.Areas.Projects.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateProjectViewModel updateProjectViewModel)
         {
-            updateProjectViewModel.CreatedBy = LoggedInUserId;
             await _projectsService.UpdateProjectAsync(updateProjectViewModel);
             return RedirectToAction("Index", "Projects", new { area = "Projects" });
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Tasks.Manager.Entities.Entities;
 using Tasks.Manager.Entities.IdentityEntities;
 
@@ -39,6 +40,17 @@ namespace Tasks.Manager.Entities
                 .WithMany(t => t.Projects)
                 .HasForeignKey(p => p.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            //CreatedBy property should be save only for one time for all entities.
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                var createdBy = entityType.FindProperty("CreatedBy");
+
+                if (createdBy is null)
+                    continue;
+
+                createdBy.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            }
 
             //Data Seeding
 

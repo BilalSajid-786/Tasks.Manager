@@ -56,7 +56,6 @@ namespace Tasks.Manager.Services.Projects.Mappers
                     ProjectId = updateProjectViewModel.ProjectId,
                     Name = updateProjectViewModel.Name,
                     Description = updateProjectViewModel.Description,
-                    CreatedBy = updateProjectViewModel.CreatedBy.Value,
                     TeamId = updateProjectViewModel.TeamId
                 };
             }
