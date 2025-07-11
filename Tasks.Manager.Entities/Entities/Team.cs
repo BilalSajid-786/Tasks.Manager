@@ -22,11 +22,15 @@ namespace Tasks.Manager.Entities.Entities
         //Foreign key property
         public Guid CreatedBy { get; set; }
 
-        //Navigation property to User
+        //Navigation property to User for CreatedBy
         [ForeignKey(nameof(CreatedBy))]
         public ApplicationUser? CreatedByUser { get; set; }
 
         //Navigation Property to Projects
         public ICollection<Project>? Projects { get; set; }
+
+        //Navigation Property to Users for Assigned Users
+        public ICollection<ApplicationUser>? AssignedUsers { get; set; }
+
     }
 }

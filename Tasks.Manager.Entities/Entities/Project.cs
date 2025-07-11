@@ -34,5 +34,8 @@ namespace Tasks.Manager.Entities.Entities
 
         //Navigation property to Task, 1 project to many tasks
         public ICollection<Task>? Tasks { get; set; }
+
+        //Navigation property to ProjectUser
+        public ICollection<ProjectUser>? ProjectUsers { get; set; }
     }
 }

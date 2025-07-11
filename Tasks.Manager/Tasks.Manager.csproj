@@ -18,6 +18,8 @@
   <ItemGroup>
     <Folder Include="Areas\Auth\Data\" />
     <Folder Include="Areas\Auth\Models\" />
+    <Folder Include="Areas\Dashboard\Data\" />
+    <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="Areas\Projects\Data\" />
     <Folder Include="Areas\Projects\Models\" />
     <Folder Include="Areas\Teams\Data\" />

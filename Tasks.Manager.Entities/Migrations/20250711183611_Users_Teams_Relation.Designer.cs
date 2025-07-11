@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasks.Manager.Entities;
 
@@ -11,9 +12,10 @@ using Tasks.Manager.Entities;
 namespace Tasks.Manager.Entities.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250711183611_Users_Teams_Relation")]
+    partial class Users_Teams_Relation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,21 +156,6 @@ namespace Tasks.Manager.Entities.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Projects");
-                });
-
-            modelBuilder.Entity("Tasks.Manager.Entities.Entities.ProjectUser", b =>
-                {
-                    b.Property<Guid>("ProjectId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProjectId", "UserId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ProjectUser");
                 });
 
             modelBuilder.Entity("Tasks.Manager.Entities.Entities.Task", b =>
@@ -420,25 +407,6 @@ namespace Tasks.Manager.Entities.Migrations
                     b.Navigation("Team");
                 });
 
-            modelBuilder.Entity("Tasks.Manager.Entities.Entities.ProjectUser", b =>
-                {
-                    b.HasOne("Tasks.Manager.Entities.IdentityEntities.ApplicationUser", "User")
-                        .WithMany("ProjectUsers")
-                        .HasForeignKey("ProjectId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Tasks.Manager.Entities.Entities.Project", "Project")
-                        .WithMany("ProjectUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Project");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Tasks.Manager.Entities.Entities.Task", b =>
                 {
                     b.HasOne("Tasks.Manager.Entities.IdentityEntities.ApplicationUser", "AssignedToUser")
@@ -490,8 +458,6 @@ namespace Tasks.Manager.Entities.Migrations
 
             modelBuilder.Entity("Tasks.Manager.Entities.Entities.Project", b =>
                 {
-                    b.Navigation("ProjectUsers");
-
                     b.Navigation("Tasks");
                 });
 
@@ -509,8 +475,6 @@ namespace Tasks.Manager.Entities.Migrations
                     b.Navigation("CreatedTasks");
 
                     b.Navigation("CreatedTeams");
-
-                    b.Navigation("ProjectUsers");
                 });
 #pragma warning restore 612, 618
         }

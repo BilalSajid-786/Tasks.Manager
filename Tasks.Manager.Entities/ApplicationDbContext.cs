@@ -6,7 +6,7 @@ using Tasks.Manager.Entities.IdentityEntities;
 
 namespace Tasks.Manager.Entities
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser,ApplicationRole,Guid>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
@@ -41,6 +41,34 @@ namespace Tasks.Manager.Entities
                 .HasForeignKey(p => p.TeamId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            //Configuring the relationship between Teams and Users
+            modelBuilder.Entity<Team>()
+                .HasOne(t => t.CreatedByUser)
+                .WithMany(u => u.CreatedTeams)
+                .HasForeignKey(t => t.CreatedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ApplicationUser>()
+                .HasOne(u => u.Team)
+                .WithMany(t => t.AssignedUsers)
+                .HasForeignKey(u => u.TeamId);
+
+            //Configuring the relationship between Projects and Users
+
+            modelBuilder.Entity<ProjectUser>()
+                .HasKey(pu => new { pu.ProjectId, pu.UserId });   // composite PK
+
+            modelBuilder.Entity<ProjectUser>()
+                .HasOne(pu => pu.Project)
+                .WithMany(p => p.ProjectUsers)
+                .HasForeignKey(pu => pu.UserId);
+
+            modelBuilder.Entity<ProjectUser>()
+                .HasOne(pu => pu.User)
+                .WithMany(u => u.ProjectUsers)
+                .HasForeignKey(u => u.ProjectId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             //CreatedBy property should be save only for one time for all entities.
             foreach (var entityType in modelBuilder.Model.GetEntityTypes())
             {
@@ -55,9 +83,9 @@ namespace Tasks.Manager.Entities
             //Data Seeding
 
             //Roles
-            var adminRoleId = Guid.NewGuid();
-            var managerRoleId = Guid.NewGuid();
-            var employeeRoleId = Guid.NewGuid();
+            var adminRoleId = Guid.Parse("08093A5D-C984-41FA-8E6E-C07A1253C06B");
+            var managerRoleId = Guid.Parse("09D3AE68-CA13-4D6E-BD86-F0773439DC8A");
+            var employeeRoleId = Guid.Parse("41E70C2A-B383-4AEF-93EE-03B3423A3596");
 
             modelBuilder.Entity<ApplicationRole>()
                 .HasData(
@@ -66,25 +94,25 @@ namespace Tasks.Manager.Entities
                     Id = adminRoleId,
                     Name = "Admin",
                     NormalizedName = "ADMIN",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                    ConcurrencyStamp = "db051222-4d68-40ab-aed0-7ba1b3aca26e"
                 },
                 new ApplicationRole()
                 {
                     Id = managerRoleId,
                     Name = "Manager",
                     NormalizedName = "MANAGER",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                    ConcurrencyStamp = "2308c8bd-4c88-480c-83f2-c3d34dbdd3a9"
                 },
                 new ApplicationRole()
                 {
                     Id = employeeRoleId,
                     Name = "Employee",
                     NormalizedName = "EMPLOYEE",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                    ConcurrencyStamp = "69261fa8-6ea9-48cf-88a0-3dbe538c4d5c"
                 }
                 );
 
-            
+
 
         }
     }
