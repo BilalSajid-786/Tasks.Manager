@@ -11,7 +11,7 @@ namespace Tasks.Manager.Entities.IdentityEntities
     public class ApplicationUser : IdentityUser<Guid>
     {
         //ForeignKey to Team Table
-        public Guid TeamId { get; set; }
+        public Guid? TeamId { get; set; }
 
         //Navigation Property to Team 1 team - * assignedUsers
         [ForeignKey(nameof(TeamId))]
