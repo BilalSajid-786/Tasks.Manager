@@ -1,0 +1,69 @@
+﻿@model AddTeamMemberViewModel
+@{
+    ViewBag.Title = "Assign Members";
+}
+
+<div class="card shadow-sm mb-4 mt-5">
+    <form method="post" asp-action="AssignMembers" asp-controller="Teams" asp-area="Teams">
+        <!-- Card header -->
+        <div class="card-header bg-primary d-flex justify-content-between align-items-center">
+            <h3 class="mb-0 h5 text-white">Assign Members</h3>
+
+
+            <select class="form-select w-auto" asp-items="Model.AvailableTeams" asp-for="TeamId">
+                <option value="">Select Team</option>
+                <!-- more options -->
+            </select>
+        </div>
+
+        <!-- Card body (optional) -->
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+
+                @for (int i = 0; i < Model.AvailableUsers.Count; i++)
+                {
+                    var row = Model.AvailableUsers[i];
+
+                    <li class="list-group-item p-0">
+                        <!-- keep list styling -->
+                        <div class="d-flex align-items-center justify-content-between px-3 py-2">
+
+                            <!-- left‑side: checkbox + name -->
+                            <div class="form-check">
+                                <input asp-for="AvailableUsers[i].IsSelected"
+                                       class="form-check-input" />
+
+                                <label asp-for="AvailableUsers[i].IsSelected"
+                                       class="form-check-label ms-2">
+                                    <!-- ms‑2 = 0.5rem gap -->
+                                    @row.Name
+                                </label>
+                            </div>
+
+                            <!-- right‑side: role badge -->
+                            <span class="badge bg-primary-subtle text-primary-emphasis">
+                                @row.Role
+                            </span>
+
+                            <!-- hidden user ID -->
+                            <input asp-for="AvailableUsers[i].UserId" hidden />
+                        </div>
+                    </li>
+                }
+
+                <!-- submit button -->
+                <div class="p-3 border-top">
+                    <button type="submit" class="btn btn-primary">
+                        Assign Selected Users
+                    </button>
+                </div>
+    </form>
+    <span asp-validation-summary="All"></span>
+    <!-- end form -->
+</div>
+</div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -76,7 +76,7 @@ namespace Tasks.Manager.Areas.Auth.Controllers
             //Login the user
             var result = await _signInManager.PasswordSignInAsync(user, loginRequest.Password, isPersistent: false, lockoutOnFailure: false);
 
-            return RedirectToAction("Index","Home", new {area = ""});
+            return RedirectToAction("Index","Dashboard", new {area = "Dashboard"});
         }
     }
 }

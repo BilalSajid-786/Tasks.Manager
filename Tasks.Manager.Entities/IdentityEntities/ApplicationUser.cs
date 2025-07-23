@@ -13,6 +13,9 @@ namespace Tasks.Manager.Entities.IdentityEntities
         //ForeignKey to Team Table
         public Guid? TeamId { get; set; }
 
+        [NotMapped]
+        public string? Role { get; set; }
+
         //Navigation Property to Team 1 team - * assignedUsers
         [ForeignKey(nameof(TeamId))]
         public Team? Team { get; set; }

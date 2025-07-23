@@ -3,3 +3,27 @@
 }
 
 
+<div class="row">
+
+        <!--Admin Cards-->
+        @if(User.IsInRole("Admin"))
+        {
+            <div class="col-md-6 mt-5">
+                <div class="card h-100 shadow-sm card-hover border-admin">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="card-title">Assign Members to teams</h5>
+                        <div class="card-text">
+                        <a asp-area="Teams" asp-controller="Teams" asp-action="AssignMembers"
+                           class="btn btn-primary">
+                            Assign Members
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+</div>
+
